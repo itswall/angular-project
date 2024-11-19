@@ -23,4 +23,8 @@ export class MovieService {
       `${this.apiUrl}/search/movie?api_key=${this.apiKey}&query=${query}&language=pt-BR`
     );
   }
+
+  getMovieDetails(movieId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/movie/${movieId}?api_key=${this.apiKey}&language=pt-BR&append_to_response=credits`);
+  }
 }

@@ -1,1 +1,9 @@
-<p>about works!</p>
+<main *ngIf="movieDetails">
+    <h2>{{ movieDetails.title }}</h2>
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path" [alt]="movieDetails.title" />
+    <p><strong>Descrição:</strong> {{ movieDetails.overview }}</p>
+    <p><strong>Ano de Lançamento:</strong> {{ movieDetails.release_date | date:'yyyy' }}</p>
+    <p><strong>Atores:</strong> 
+      <span *ngFor="let actor of movieDetails.cast">{{ actor.name }}</span>
+    </p>
+  </main>

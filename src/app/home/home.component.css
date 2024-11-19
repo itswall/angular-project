@@ -97,3 +97,15 @@ main {
         width: 100%;
     }
   }
+
+  .movie-card {
+    cursor: pointer; /* Faz com que a div tenha o cursor de mão, indicando que é clicável */
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .movie-card:hover {
+    opacity: 0.8; 
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }

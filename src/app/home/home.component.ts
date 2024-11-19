@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   searchQuery: string = ''; // Texto de busca
   selectedGenre: string = ''; // Gênero selecionado
   selectedYear: string = ''; // Ano selecionado
+  router: any;
 
   constructor(private movieApi: MovieService) {}
 
@@ -56,5 +57,9 @@ export class HomeComponent implements OnInit {
 
       return matchesGenre && matchesYear && matchesSearch;
     });
+  }
+
+  navigateToDetails(movieId: number): void {
+    this.router.navigate(['/about', movieId]);
   }
 }

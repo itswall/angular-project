@@ -19,15 +19,12 @@
     </div>
 
     <div class="movie-grid">
-        <div *ngFor="let movie of filteredMovies" class="movie-card">
-            <img
-                [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-                [alt]="movie.title"
-            />
-            <div class="movie-info">
-                <h3>{{ movie.title }}</h3>
-                <p>{{ movie.overview }}</p>
-            </div>
+        <div class="movie-card" *ngFor="let movie of filteredMovies" [routerLink]="['/about', movie.id]">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" />
+          <div class="movie-info">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.overview }}</p>
+          </div>
         </div>
-    </div>
+      </div>
 </main>
