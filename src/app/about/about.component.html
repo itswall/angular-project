@@ -1,9 +1,34 @@
-<main *ngIf="movieDetails">
-    <h2>{{ movieDetails.title }}</h2>
-    <img [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path" [alt]="movieDetails.title" />
-    <p><strong>Descrição:</strong> {{ movieDetails.overview }}</p>
-    <p><strong>Ano de Lançamento:</strong> {{ movieDetails.release_date | date:'yyyy' }}</p>
-    <p><strong>Atores:</strong> 
-      <span *ngFor="let actor of movieDetails.cast">{{ actor.name }}</span>
-    </p>
-  </main>
+<div class="movie-details-container">
+  <div class="movie-header">
+    <img
+      class="movie-poster"
+      [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path"
+      [alt]="movieDetails.title"
+    />
+    <div class="movie-info">
+      <h1 class="movie-title">{{ movieDetails.title }}</h1>
+      <div class="movie-genres">
+        <span *ngFor="let genre of movieDetails.genres" class="genre-tag">
+          {{ genre }}
+        </span>
+      </div>
+      <p class="movie-release"><strong>Data de Lançamento:</strong> {{ movieDetails.release_date | date: 'dd/MM/yyyy' }}</p>
+      <p class="movie-rating"><strong>Avaliação:</strong> {{ movieDetails.vote_average }}</p>
+    </div>
+  </div>
+
+  <div class="movie-description">
+    <h2>Sinopse</h2>
+    <p>{{ movieDetails.overview }}</p>
+  </div>
+
+  <div class="movie-cast">
+    <h3>Elenco Principal</h3>
+    <div class="cast-list">
+      <div *ngFor="let actor of movieDetails.cast" class="cast-member">
+        <strong>{{ actor.name }}</strong><br />
+        {{ actor.character }}
+      </div>
+    </div>
+  </div>
+</div>

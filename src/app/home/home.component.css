@@ -99,7 +99,7 @@ main {
   }
 
   .movie-card {
-    cursor: pointer; /* Faz com que a div tenha o cursor de mão, indicando que é clicável */
+    cursor: pointer; 
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }

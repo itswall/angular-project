@@ -7,40 +7,40 @@ import { MovieService } from '../services/movieapi.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  movies: any[] = []; // Todos os filmes carregados
-  filteredMovies: any[] = []; // Filmes exibidos após filtragem
-  genres: any[] = []; // Lista de gêneros
-  years: number[] = []; // Lista de anos para o filtro
-  searchQuery: string = ''; // Texto de busca
-  selectedGenre: string = ''; // Gênero selecionado
-  selectedYear: string = ''; // Ano selecionado
+  movies: any[] = []; 
+  filteredMovies: any[] = [];
+  genres: any[] = []; 
+  years: number[] = []; 
+  searchQuery: string = ''; 
+  selectedGenre: string = ''; 
+  selectedYear: string = ''; 
   router: any;
 
   constructor(private movieApi: MovieService) {}
 
   ngOnInit(): void {
-    this.fetchMovies(); // Carrega os filmes populares
-    this.fetchGenres(); // Carrega a lista de gêneros
-    this.generateYears(); // Gera a lista de anos para o filtro
+    this.fetchMovies();
+    this.fetchGenres();
+    this.generateYears(); 
   }
 
   fetchMovies(): void {
     this.movieApi.getPopularMovies().subscribe((data) => {
       this.movies = data.results;
-      this.filteredMovies = [...this.movies]; // Inicializa os filmes exibidos
+      this.filteredMovies = [...this.movies]; 
     });
   }
 
   fetchGenres(): void {
     this.movieApi.getGenres().subscribe((data) => {
-      this.genres = data.genres; // Recebe a lista de gêneros
+      this.genres = data.genres;
     });
   }
 
   generateYears(): void {
     const currentYear = new Date().getFullYear();
     for (let year = currentYear; year >= 2000; year--) {
-      this.years.push(year); // Gera anos de 2000 até o ano atual
+      this.years.push(year); 
     }
   }
 
