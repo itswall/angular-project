@@ -2,44 +2,31 @@
     <h2>Filmes</h2>
 
     <div class="search-filters">
-        <input type="search" placeholder=" pesquisar filmes...">
-        <select>
-            <option value="" disabled selected>gênero</option>
-            <option value="acao">Ação</option>
-            <option value="aventura">Aventura</option>
-            <option value="comedia">Comédia</option>
+        <input
+            type="search"
+            placeholder="Pesquisar filmes..."
+            [(ngModel)]="searchQuery"
+        />
+        <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
+            <option value="" disabled selected>Gênero</option>
+            <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
         </select>
-        <select>
+        <select [(ngModel)]="selectedYear" (change)="applyFilters()">
             <option value="" disabled selected>Ano de Lançamento</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
         </select>
-        <button>Aplicar Filtros</button>
+        <button (click)="applyFilters()">Aplicar Filtros</button>
     </div>
 
     <div class="movie-grid">
-        <div class="movie-card">
-            <img src="placeholder-batman.jpg" alt="The Batman">
-            <div class="movie-info"> 
-                <h3>The BATMAN</h3>
-                <p>ele é o batman</p>
-            </div>
-        </div>
-
-        <div class="movie-card">
-            <img src="placeholder-mario.jpg" alt="The Super Mario Bros Movie">
+        <div *ngFor="let movie of filteredMovies" class="movie-card">
+            <img
+                [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                [alt]="movie.title"
+            />
             <div class="movie-info">
-                <h3>The Super Mario Bros Movie</h3>
-                <p>descrição do filme</p>
-            </div>
-        </div>
-
-        <div class="movie-card">
-            <img src="placeholder-freddy.jpg" alt="Five Nights at Freddy's">
-            <div class="movie-info">
-                <h3>Five Nights at Freddy's</h3>
-                <p>har har har har har har har har haaar har har har, har har har här.</p>
+                <h3>{{ movie.title }}</h3>
+                <p>{{ movie.overview }}</p>
             </div>
         </div>
     </div>
