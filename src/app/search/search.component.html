@@ -1,1 +1,30 @@
-<p>search works!</p>
+<main>
+    <h1>Pesquisar Filmes</h1>
+    <div class="container">
+      <div class="search-barra">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="applyFilters()"
+          placeholder="Pesquisar Filme por título"
+          aria-label="Pesquisar Filmes"
+        />
+        <select [(ngModel)]="selectedGenre" (ngModelChange)="applyFilters()" aria-label="Selecionar Gênero">
+          <option value="">Todos os Gêneros</option>
+          <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+        </select>
+        
+      </div>
+  
+      <div class="movie-list">
+        <div class="movie-card" *ngFor="let movie of filteredMovies" (click)="navigateToDetails(movie.id)">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            [alt]="movie.title"
+            loading="lazy"
+          />
+          <h3>{{ movie.title }}</h3>
+        </div>
+      </div>
+    </div>
+  </main>

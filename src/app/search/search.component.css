@@ -1,0 +1,76 @@
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .search-barra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-barra input,
+  .search-barra select {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .movie-card {
+    flex: 1 1 calc(20% - 1rem);
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    max-width: 200px;
+  }
+  
+  .movie-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .movie-card h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .search-barra {
+      flex-direction: column;
+    }
+  
+    .movie-card {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
