@@ -1,30 +1,48 @@
 <main>
-    <h2>Filmes</h2>
+  <h2>Filmes</h2>
 
-    <div class="search-filters">
-        <input
-            type="search"
-            placeholder="Pesquisar filmes..."
-            [(ngModel)]="searchQuery"
-        />
-        <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
-            <option value="" disabled selected>Gênero</option>
-            <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
-        </select>
-        <select [(ngModel)]="selectedYear" (change)="applyFilters()">
-            <option value="" disabled selected>Ano de Lançamento</option>
-            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
-        <button (click)="applyFilters()">Aplicar Filtros</button>
-    </div>
+  <div class="search-filters">
+    <input
+      type="search"
+      placeholder="Pesquisar filmes..."
+      [(ngModel)]="searchQuery"
+      (input)="applyFilters()"
+    />
+  </div>
 
-    <div class="movie-grid">
-        <div class="movie-card" *ngFor="let movie of filteredMovies" [routerLink]="['/about', movie.id]">
-          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" />
-          <div class="movie-info">
-            <h3>{{ movie.title }}</h3>
-            <p>{{ movie.overview }}</p>
+  <div *ngIf="filteredMovies.length">
+    <section class="movie-list">
+      <h3>Mais Populares</h3>
+      <div class="movie-horizontal-scroll">
+        <button class="arrow-btn left" (click)="scrollLeft('popular')">&#10094;</button>
+        <div class="movie-grid" #popularMoviesGrid>
+          <div class="movie-card" *ngFor="let movie of popularMovies" [routerLink]="['/about', movie.id]">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" />
+            <div class="movie-info">
+              <h3>{{ movie.title }}</h3>
+              <p>{{ movie.overview }}</p>
+            </div>
           </div>
         </div>
+        <button class="arrow-btn right" (click)="scrollRight('popular')">&#10095;</button>
       </div>
+    </section>
+
+    <section class="movie-list" *ngFor="let genre of genres">
+      <h3>{{ genre.name }}</h3>
+      <div class="movie-horizontal-scroll">
+        <button class="arrow-btn left" (click)="scrollLeft(genre.id)">&#10094;</button>
+        <div class="movie-grid" #genreMoviesGrid>
+          <div class="movie-card" *ngFor="let movie of getMoviesByGenre(genre.id)" [routerLink]="['/about', movie.id]">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" />
+            <div class="movie-info">
+              <h3>{{ movie.title }}</h3>
+              <p>{{ movie.overview }}</p>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn right" (click)="scrollRight(genre.id)">&#10095;</button>
+      </div>
+    </section>
+  </div>
 </main>

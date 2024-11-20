@@ -1,33 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MovieService } from '../services/movieapi.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  movies: any[] = []; 
+  movies: any[] = [];
   filteredMovies: any[] = [];
-  genres: any[] = []; 
-  years: number[] = []; 
-  searchQuery: string = ''; 
-  selectedGenre: string = ''; 
-  selectedYear: string = ''; 
+  popularMovies: any[] = [];
+  genres: any[] = [];
+  searchQuery: string = '';
+  selectedGenre: string = '';
+  selectedYear: string = '';
   router: any;
+
+  @ViewChild('popularMoviesGrid') popularMoviesGrid: ElementRef | undefined;
+  @ViewChild('genreMoviesGrid') genreMoviesGrid: ElementRef | undefined;
 
   constructor(private movieApi: MovieService) {}
 
   ngOnInit(): void {
     this.fetchMovies();
     this.fetchGenres();
-    this.generateYears(); 
   }
 
   fetchMovies(): void {
     this.movieApi.getPopularMovies().subscribe((data) => {
       this.movies = data.results;
-      this.filteredMovies = [...this.movies]; 
+      this.popularMovies = this.movies; 
+      this.filteredMovies = [...this.movies];  
     });
   }
 
@@ -37,29 +40,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  generateYears(): void {
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 2000; year--) {
-      this.years.push(year); 
+  applyFilters(): void {
+    if (!this.searchQuery) {
+      this.filteredMovies = [...this.movies]; 
+    } else {
+      this.filteredMovies = this.movies.filter((movie) =>
+        movie.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     }
   }
 
-  applyFilters(): void {
-    this.filteredMovies = this.movies.filter((movie) => {
-      const matchesGenre =
-        this.selectedGenre === '' || movie.genre_ids.includes(+this.selectedGenre);
-      const matchesYear =
-        this.selectedYear === '' ||
-        new Date(movie.release_date).getFullYear().toString() === this.selectedYear;
-      const matchesSearch =
-        this.searchQuery === '' ||
-        movie.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-
-      return matchesGenre && matchesYear && matchesSearch;
-    });
+  getMoviesByGenre(genreId: number): any[] {
+    return this.movies.filter((movie) => movie.genre_ids.includes(genreId));
   }
 
-  navigateToDetails(movieId: number): void {
-    this.router.navigate(['/about', movieId]);
+  scrollLeft(section: string): void {
+    const grid = section === 'popular' ? this.popularMoviesGrid : this.genreMoviesGrid;
+    if (grid && grid.nativeElement) {
+      grid.nativeElement.scrollLeft -= 200; 
+    }
+  }
+
+  scrollRight(section: string): void {
+    const grid = section === 'popular' ? this.popularMoviesGrid : this.genreMoviesGrid;
+    if (grid && grid.nativeElement) {
+      grid.nativeElement.scrollLeft += 200; 
+    }
   }
 }
