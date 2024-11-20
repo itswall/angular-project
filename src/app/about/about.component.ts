@@ -15,11 +15,20 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const movieId = this.route.snapshot.paramMap.get('id'); 
+    const movieId = this.route.snapshot.paramMap.get('id');
     if (movieId) {
-      this.movieApi.getMovieDetails(+movieId).subscribe((data) => {
-        this.movieDetails = data; 
-      });
+      this.movieApi.getMovieDetails(+movieId).subscribe(
+        (data) => {
+          this.movieDetails = data;
+        },
+        (error) => {
+          console.error('Error fetching movie details:', error);
+          // Handle error (e.g., show error message to user)
+        }
+      );
+    } else {
+      console.error('No movie ID provided');
+      // Handle error (e.g., redirect to home page)
     }
   }
 }
