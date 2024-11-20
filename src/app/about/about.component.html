@@ -1,33 +1,33 @@
-<div *ngIf="movieDetails" class="movie-container">
-  <!-- poster -->
+<div class="movie-container" *ngIf="movieDetails">
   <div class="poster">
+    <div class="release-date">
+      <div class="date">{{ movieDetails.release_date | date:'dd' }}</div>
+      <div class="month-year">{{ movieDetails.release_date | date:'MMM yyyy' | uppercase }}</div>
+    </div>
     <img [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path" [alt]="movieDetails.title">
   </div>
 
-  <!-- detalhes -->
   <div class="movie-info">
-    <h1>{{ movieDetails.title }}</h1>
+    <h1 class="movie-title">{{ movieDetails.title }}</h1>
 
-    <!-- generos -->
+    <div class="rating">
+      <div class="stars">
+        <span class="star" *ngFor="let star of [1,2,3,4,5]" [class.filled]="star <= movieDetails.vote_average / 2">★</span>
+      </div>
+      <span class="rating-value">{{ movieDetails.vote_average }}</span>
+    </div>
+
     <div class="genres">
       <span class="genre-tag" *ngFor="let genre of movieDetails.genres">
         {{ genre.name }}
       </span>
     </div>
 
-    <!-- data lançamento e avaliação -->
-    <div class="details">
-      <p><strong>Data de Lançamento:</strong> {{ movieDetails.release_date | date:'dd/MM/yyyy' }}</p>
-      <p><strong>Avaliação:</strong> {{ movieDetails.vote_average }}</p>
-    </div>
-
-    <!-- sinopse -->
     <div class="sinopse">
       <h2>Sinopse</h2>
       <p>{{ movieDetails.overview }}</p>
     </div>
 
-    <!-- elenco -->
     <div class="elenco">
       <h2>Elenco Principal</h2>
       <div class="cast-list">
