@@ -1,14 +1,6 @@
 <main>
   <h2>Filmes</h2>
 
-  <div class="search-filters">
-    <input
-      type="search"
-      placeholder="Pesquisar filmes..."
-      [(ngModel)]="searchQuery"
-      (input)="applyFilters()"
-    />
-  </div>
 
   <div *ngIf="filteredMovies.length">
     <section class="movie-list">
