@@ -1,45 +1,53 @@
+.header-image {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: -150px;
+  filter: brightness(0.7);
+}
+
 .movie-container {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   background: #ffffff;
   border-radius: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.media-section {
+  flex-shrink: 0;
+  width: 300px;
 }
 
 .poster {
-  flex-shrink: 0;
-  width: 450px;
-  position: relative;
-}
-
-.poster img {
   width: 100%;
-  height: auto;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-.release-date {
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  background-color: #dc2626;
-  color: white;
-  padding: 0.5rem;
+.video-thumbnail iframe {
+  width: 100%;
+  height: 180px;
+  margin-top: 1rem;
   border-radius: 8px;
-  text-align: center;
-  z-index: 10;
 }
 
-.date {
-  font-size: 1.5rem;
-  font-weight: bold;
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
-.month-year {
-  font-size: 0.8rem;
+.image-gallery img {
+  width: calc(50% - 0.25rem);
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .movie-info {
@@ -47,109 +55,91 @@
 }
 
 .movie-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.release-year {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.tagline {
+  font-style: italic;
+  color: #444;
   margin-bottom: 1rem;
-  color: #1a1a1a;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .rating {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.stars {
-  display: flex;
 }
 
 .star {
-  color: #d1d5db;
+  color: #f5c518;
   font-size: 1.5rem;
 }
 
-.star.filled {
-  color: #dc2626;
-}
-
-.rating-value {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.genres {
+.details {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1.5rem 0;
-}
-
-.genre-tag {
-  background-color: #dc2626;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  gap: 0.5rem;
   font-size: 0.9rem;
-  font-weight: 500;
+  color: #666;
 }
 
-.sinopse {
-  margin: 2rem 0;
+.overview {
+  margin-bottom: 2rem;
 }
 
-.sinopse h2 {
+.overview h2 {
   font-size: 1.5rem;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
-.sinopse p {
-  line-height: 1.7;
-  color: #444;
-  font-size: 1.1rem;
+.credits {
+  display: flex;
+  gap: 2rem;
 }
 
-.elenco {
-  margin-top: 3rem;
+.credit-section {
+  flex: 1;
 }
 
-.elenco h2 {
-  font-size: 1.5rem;
-  color: #1a1a1a;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+.credit-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .cast-list {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding: 1rem 0;
 }
 
 .cast-member {
-  min-width: 120px;
   text-align: center;
+  min-width: 100px;
 }
 
 .cast-member img {
-  width: 120px;
-  height: 180px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.actor-name {
-  font-weight: 600;
-  margin: 0.75rem 0 0.25rem;
-  color: #1a1a1a;
-}
-
-.character-name {
-  font-size: 0.9rem;
+.cast-member .character {
+  font-size: 0.8rem;
   color: #666;
 }
 
@@ -166,14 +156,14 @@
     padding: 1rem;
   }
 
-  .poster {
+  .media-section {
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
   }
 
   .movie-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
   }
 
