@@ -8,12 +8,9 @@ nav {
   justify-content: space-between; 
   align-items: center;
 }
-#menu {
-  font-weight: 800;
-}
 
 #logo {
-  color: #d67272;
+  color: #c95656;
   font-size: 1.5rem;
   font-weight: 800;
   font-family: 'parkinsans', sans-serif;
@@ -26,7 +23,7 @@ nav {
 }
 
 nav h1 {
-  color: #8B3E3E;
+  color: #c95656;
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0;
@@ -35,7 +32,7 @@ nav h1 {
 }
 
 #search {
-  background-color: #8B3E3E;
+  background-color: #c95656;
   color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
