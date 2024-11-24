@@ -6,13 +6,25 @@
     <div class="video-thumbnail" *ngIf="safeVideoUrl">
       <iframe [src]="safeVideoUrl" frameborder="0" allowfullscreen></iframe>
     </div>
-    <div class="image-gallery">
-      <img *ngFor="let image of movieDetails.images?.backdrops?.slice(0, 4)" [src]="'https://image.tmdb.org/t/p/w300' + image.file_path" [alt]="movieDetails.title">
-    </div>
+    <div class="movie-gallery">
+  <div class="gallery-grid">
+    <img *ngFor="let image of movieDetails.images?.backdrops?.slice(0, 6)" 
+         [src]="'https://image.tmdb.org/t/p/w300' + image.file_path" 
+         [alt]="movieDetails.title"
+         class="gallery-image">
+  </div>
+</div>
   </div>
 
   <div class="movie-info">
-    <h1 class="movie-title">{{ movieDetails.title }} <span class="release-year">{{ movieDetails.release_date | date:'yyyy' }}</span></h1>
+      <h1 class="movie-title">{{ movieDetails.title }} <span class="release-year">{{ movieDetails.release_date | date:'yyyy' }}</span></h1>
+      <button class="button favorites-button" (click)="addToFavorites()">
+        <div class="icon-container">
+          <span class="star-icon">★</span>
+        </div>
+        <span class="text-fav">Adicionar aos favoritos</span>
+      </button>
+      
     <p class="tagline">{{ movieDetails.tagline }}</p>
     <div class="description">
       <div class="rating">
@@ -49,7 +61,6 @@
         </div>
       </div>
     </div>
-    <button class="button" (click)="addToFavorites()"><span>Adicionar aos favoritos</span></button>
   </div>
 </div>
 
