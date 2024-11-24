@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movieapi.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-about',
@@ -17,7 +18,8 @@ export class AboutComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieApi: MovieService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,12 @@ export class AboutComponent implements OnInit {
       this.writers = this.movieDetails.credits.crew
         .filter((member: any) => member.department === 'Writing')
         .map((writer: any) => writer.name);
+    }
+  }
+  addToFavorites(): void {
+    if (this.movieDetails) {
+      this.favoritesService.addToFavorites(this.movieDetails);
+      alert('Filme adicionado aos favoritos!');
     }
   }
 }

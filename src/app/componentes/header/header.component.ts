@@ -11,8 +11,8 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
-  goToAbout() {
-    this.router.navigate(['/about']);
+  goToFavorites() {
+    this.router.navigate(['/favorites']);
   }
 
   goToMenu() {

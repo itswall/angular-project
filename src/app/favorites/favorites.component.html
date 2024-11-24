@@ -1,0 +1,22 @@
+<main>
+    <h2>Favoritos</h2>
+    <div class="favorites" *ngIf="favoriteMovies.length > 0; else noFavorites">
+      <div class="movie-list">
+        <div class="movie-card" *ngFor="let movie of favoriteMovies">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            [alt]="movie.title"
+          />
+          <div class="movie-info">
+            <h4>{{ movie.title }}</h4>
+            <button (click)="removeFromFavorites(movie.id)">Remover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noFavorites>
+      <p>Nenhum filme nos favoritos ainda.</p>
+    </ng-template>
+  </main>
+  
