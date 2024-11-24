@@ -1,5 +1,5 @@
 header {
-  background-color: #8B3E3E;
+  background-color: #ffffff;
   padding: 1rem;
 }
 
@@ -8,11 +8,15 @@ nav {
   justify-content: space-between; 
   align-items: center;
 }
+#menu {
+  font-weight: 800;
+}
 
 #logo {
-  color: white;
+  color: #d67272;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 800;
+  font-family: 'parkinsans', sans-serif;
 }
 
 .nav-links {
@@ -22,7 +26,7 @@ nav {
 }
 
 nav h1 {
-  color: white;
+  color: #8B3E3E;
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0;
@@ -31,8 +35,8 @@ nav h1 {
 }
 
 #search {
-  background-color: white;
-  color: #8B3E3E;
+  background-color: #8B3E3E;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;

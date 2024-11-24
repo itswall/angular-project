@@ -34,3 +34,4 @@ export class MovieService {
     return this.http.get<any>(`${this.apiUrl}/movie/${movieId}/images?api_key=${this.apiKey}`);
   }
 }
+

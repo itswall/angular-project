@@ -6,7 +6,14 @@ main {
   
   h2 {
     font-size: 2rem;
+    font-family: 'Parkinsans', sans-serif;
+    font-weight: 700;
     margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 300;
   }
   
   .movie-list {
@@ -34,6 +41,8 @@ main {
   
   .movie-info h4 {
     font-size: 1rem;
+    font-family: 'Parkinsans', sans-serif;
+    font-weight: 800;
     margin: 0.5rem 0;
   }
   
