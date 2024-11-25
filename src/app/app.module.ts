@@ -9,6 +9,7 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
     AboutComponent,
     HeaderComponent,
     HomeComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
