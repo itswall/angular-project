@@ -14,6 +14,7 @@ export class AboutComponent implements OnInit {
   safeVideoUrl: SafeResourceUrl | null = null;
   director: string = '';
   writers: string[] = [];
+  galleryImages: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,11 @@ export class AboutComponent implements OnInit {
             const videoKey = this.movieDetails.videos.results[0].key;
             this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoKey}`);
           }
+
+          if (this.movieDetails.images && this.movieDetails.images.backdrops) {
+            this.galleryImages = this.movieDetails.images.backdrops.slice(0, 6);
+          }
+
           this.extractCrewInfo();
         },
         (error) => {
@@ -57,4 +63,6 @@ export class AboutComponent implements OnInit {
       alert('Filme adicionado aos favoritos!');
     }
   }
+
+  
 }

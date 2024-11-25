@@ -6,14 +6,18 @@
     <div class="video-thumbnail" *ngIf="safeVideoUrl">
       <iframe [src]="safeVideoUrl" frameborder="0" allowfullscreen></iframe>
     </div>
-    <div class="movie-gallery">
-  <div class="gallery-grid">
-    <img *ngFor="let image of movieDetails.images?.backdrops?.slice(0, 6)" 
-         [src]="'https://image.tmdb.org/t/p/w300' + image.file_path" 
-         [alt]="movieDetails.title"
-         class="gallery-image">
-  </div>
-</div>
+    <div class="movie-gallery" >
+      <h2>Galeria</h2>
+      <div class="gallery-grid" *ngIf="galleryImages.length > 0; else noImages">
+        <img *ngFor="let image of galleryImages" 
+             [src]="'https://image.tmdb.org/t/p/w500' + image.file_path" 
+             [alt]="movieDetails.title"
+             class="gallery-image">
+      </div>
+    </div>
+    <ng-template #noImages>
+      <p>Sem imagens disponíveis para este filme.</p>
+    </ng-template>
   </div>
 
   <div class="movie-info">
@@ -61,6 +65,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
